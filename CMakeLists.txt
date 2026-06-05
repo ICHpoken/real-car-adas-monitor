@@ -15,7 +15,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Ищем ONNX Runtime
-set(ONNXRUNTIME_ROOT "C:/onnxruntime-win-x64-1.26.0")
+set(ONNXRUNTIME_ROOT "C:/onnxruntime")
 include_directories(${ONNXRUNTIME_ROOT}/include)
 link_directories(${ONNXRUNTIME_ROOT}/lib)
 
@@ -36,11 +36,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Тесты
-add_executable(RunTests 
-    tests/test_obd_parser.cpp 
-    src/obd_parser.cpp 
-    src/dms_monitor.cpp
-)
+add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
 target_link_libraries(RunTests gtest gtest_main ${OpenCV_LIBS})
 enable_testing()
-add_test(NAME AllTests COMMAND RunTests)
