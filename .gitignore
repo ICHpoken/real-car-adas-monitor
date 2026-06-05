@@ -23,6 +23,7 @@ build/
 *.exe
 *.dll
 models/*.onnx
+models/*.onnx.data
 data/*.csv
 output/
 >>>>>>> 70e6e61 (feat: initial project structure and CMake setup)
