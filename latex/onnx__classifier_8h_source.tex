@@ -1,0 +1,45 @@
+\doxysection{onnx\+\_\+classifier.\+h}
+\hypertarget{onnx__classifier_8h_source}{}\label{onnx__classifier_8h_source}\index{src/onnx\_classifier.h@{src/onnx\_classifier.h}}
+\doxymbox{\hyperlink{onnx__classifier_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <onnxruntime\_cxx\_api.h>}\ \textcolor{comment}{//\ Главный\ заголовок\ ONNX\ Runtime}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Структура\ для\ хранения\ результата\ классификации}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_classification_result_aba26cd2c4467902c5131ff762faf3923}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Предсказанный\ класс\ (0,\ 1\ или\ 2)}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_classification_result_a7d662ffa46f0bd546eb4c601b2a57354}{confidence}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Уверенность\ модели\ (от\ 0.0\ до\ 1.0)}}
+\DoxyCodeLine{00010\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{struct_classification_result_a8ab6fee475e1dc8b2929f23b1a7658da}{scores}};\ \ \textcolor{comment}{//\ Массив\ вероятностей\ для\ всех\ 3\ классов}}
+\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Класс\ для\ инференса\ (запуска)\ нейросети}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_o_n_n_x_classifier_a4a75be0f5b6f6e5cbf815112ad71ebdc}{ONNXClassifier}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Конструктор:\ загружает\ модель\ и\ параметры\ нормализации}}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a4a75be0f5b6f6e5cbf815112ad71ebdc}{ONNXClassifier}}(\textcolor{keyword}{const}\ std::string\&\ modelPath,\ \textcolor{keyword}{const}\ std::string\&\ paramsPath);}
+\DoxyCodeLine{00018\ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Метод\ предсказания:\ принимает\ 6\ признаков,\ возвращает\ результат}}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a9f0cf15b05a84b9d57e843ac217fbb53}{predict}}(\textcolor{keyword}{const}\ std::vector<float>\&\ features);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Среда\ выполнения\ ONNX\ (должна\ жить\ всё\ время\ работы\ программы)}}
+\DoxyCodeLine{00024\ \ \ \ \ Ort::Env\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_ad1eaf00fb496610d1b46811092d849de}{env}}\{ORT\_LOGGING\_LEVEL\_WARNING,\ \textcolor{stringliteral}{"{}ADAS\_Classifier"{}}\};}
+\DoxyCodeLine{00025\ \ \ \ \ Ort::Session\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_acf15a19c47a5ff647885b7e15e15b501}{session}}\{\textcolor{keyword}{nullptr}\};\ \textcolor{comment}{//\ Сессия\ загруженной\ модели}}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Параметры\ нормализации}}
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_aec4324cd2b7998ddc0c648be59386043}{mean\_}};}
+\DoxyCodeLine{00029\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_adfd5beb566b2daf68143bd0ba37f9198}{std\_}};}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<std::string>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a42accd65d3d2c80b74af9ad3213c0d41}{classes\_}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Вспомогательные\ методы}}
+\DoxyCodeLine{00033\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a30519275d79b8f0966ba497d50a59f05}{normalize}}(\textcolor{keyword}{const}\ std::vector<float>\&\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a84cf7fc2ea58a8e5589b50ee1a1f8008}{softmax}}(\textcolor{keyword}{const}\ std::vector<float>\&\ logits)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Простой\ парсер\ JSON\ (без\ внешних\ библиотек)}}
+\DoxyCodeLine{00037\ \ \ \ \ std::vector<float>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a67cd6feaea885b672efa45bc9bfdb90d}{parseJsonArray}}(\textcolor{keyword}{const}\ std::string\&\ json,\ \textcolor{keyword}{const}\ std::string\&\ key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<std::string>\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a95c576d3e3955bbb2dc4a6e3f5e0dec0}{parseJsonStringArray}}(\textcolor{keyword}{const}\ std::string\&\ json,\ \textcolor{keyword}{const}\ std::string\&\ key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \};}
+
+\end{DoxyCode}

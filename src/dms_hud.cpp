@@ -1,67 +1,40 @@
 #include "dms_hud.h"
-#include <cstdio>
 
-// Отрисовка угловых скобок (вместо полного прямоугольника)
-static void drawCornerBox(cv::Mat& frame, cv::Rect r, const cv::Scalar& color, int thickness) {
-    int cornerLen = 30;
-    // Верхний левый угол
-    cv::line(frame, cv::Point(r.x, r.y), cv::Point(r.x + cornerLen, r.y), color, thickness, cv::LINE_AA);
-    cv::line(frame, cv::Point(r.x, r.y), cv::Point(r.x, r.y + cornerLen), color, thickness, cv::LINE_AA);
-    // Верхний правый угол
-    cv::line(frame, cv::Point(r.br().x, r.y), cv::Point(r.br().x - cornerLen, r.y), color, thickness, cv::LINE_AA);
-    cv::line(frame, cv::Point(r.br().x, r.y), cv::Point(r.br().x, r.y + cornerLen), color, thickness, cv::LINE_AA);
-    // Нижний левый угол
-    cv::line(frame, cv::Point(r.x, r.br().y), cv::Point(r.x + cornerLen, r.br().y), color, thickness, cv::LINE_AA);
-    cv::line(frame, cv::Point(r.x, r.br().y), cv::Point(r.x, r.br().y - cornerLen), color, thickness, cv::LINE_AA);
-    // Нижний правый угол
-    cv::line(frame, cv::Point(r.br().x, r.br().y), cv::Point(r.br().x - cornerLen, r.br().y), color, thickness, cv::LINE_AA);
-    cv::line(frame, cv::Point(r.br().x, r.br().y), cv::Point(r.br().x, r.br().y - cornerLen), color, thickness, cv::LINE_AA);
-}
+void DMSHUD::draw(cv::Mat& full_frame, const DriverState& state, const cv::Mat& camera_frame) {
+    int hud_width = full_frame.cols / 2;
+    int hud_height = full_frame.rows;
+    cv::Mat camera_resized;
+    cv::resize(camera_frame, camera_resized, cv::Size(hud_width, hud_height));
+    camera_resized.copyTo(full_frame(cv::Rect(hud_width, 0, hud_width, hud_height)));
 
-void DMSHUD::draw(cv::Mat& frame, const DriverState& state) {
-    // Определяем основной цвет рамки лица
-    cv::Scalar faceColor = cv::Scalar(0, 220, 0); // Зеленый по умолчанию
-    if (state.alert_drowsy) faceColor = cv::Scalar(0, 165, 255);   // Оранжевый
-    if (state.alert_distracted) faceColor = cv::Scalar(0, 0, 255); // Красный
-
-    // 1. Рисуем угловые скобки вокруг лица
+    cv::Mat hud_area = full_frame(cv::Rect(hud_width, 0, hud_width, hud_height));
     if (state.face_detected) {
-        drawCornerBox(frame, state.face_rect, faceColor, 3);
+        cv::Rect shifted_rect(state.face_rect.x - hud_width, state.face_rect.y,
+                              state.face_rect.width, state.face_rect.height);
+        shifted_rect = shifted_rect & cv::Rect(0, 0, hud_width, hud_height);
+        cv::Scalar face_color = (state.alert_drowsy || state.alert_distracted) ?
+                                cv::Scalar(0, 0, 255) : cv::Scalar(0, 255, 0);
+        cv::rectangle(hud_area, shifted_rect, face_color, 2);
     }
 
-    // 2. Панель статуса в левом верхнем углу
-    int y = 30;
-    int x = 20;
-    auto drawLine = [&](const std::string& text, const cv::Scalar& col) {
-        cv::putText(frame, text, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, 0.6, col, 2, cv::LINE_AA);
-        y += 30;
-    };
+    cv::putText(hud_area, "Driver Status:", cv::Point(10,30), cv::FONT_HERSHEY_SIMPLEX,0.6, cv::Scalar(255,255,255),1);
+    cv::Scalar eye_color = state.eyes_open ? cv::Scalar(0,255,0) : cv::Scalar(0,0,255);
+    cv::putText(hud_area, std::string("Eyes: ")+ (state.eyes_open?"OPEN":"CLOSED"), cv::Point(10,60), cv::FONT_HERSHEY_SIMPLEX,0.5, eye_color,1);
+    cv::Scalar head_color = state.looking_forward ? cv::Scalar(0,255,0) : cv::Scalar(0,0,255);
+    cv::putText(hud_area, std::string("Head: ")+ (state.looking_forward?"FORWARD":"TURNED"), cv::Point(10,85), cv::FONT_HERSHEY_SIMPLEX,0.5, head_color,1);
 
-    drawLine("Face: " + std::string(state.face_detected ? "DETECTED" : "NOT FOUND"), 
-             state.face_detected ? cv::Scalar(0, 220, 0) : cv::Scalar(0, 0, 255));
-             
-    drawLine("Eyes: " + std::string(state.eyes_open ? "OPEN" : "CLOSED"), 
-             state.eyes_open ? cv::Scalar(0, 220, 0) : cv::Scalar(0, 0, 255));
-             
-    char buf[64];
-    snprintf(buf, sizeof(buf), "Head turn: %.1f deg", state.head_turn_deg);
-    drawLine(buf, cv::Scalar(200, 200, 200));
+    char openness_text[50], turn_text[50];
+    snprintf(openness_text, sizeof(openness_text), "Openness: %.2f", state.eye_openness);
+    snprintf(turn_text, sizeof(turn_text), "Head turn: %.1f deg", state.head_turn_deg);
+    cv::putText(hud_area, openness_text, cv::Point(10,110), cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(255,255,255),1);
+    cv::putText(hud_area, turn_text, cv::Point(10,135), cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(255,255,255),1);
 
-    drawLine("Status: " + std::string(state.alert_drowsy || state.alert_distracted ? "ALERT!" : "NORMAL"),
-             (state.alert_drowsy || state.alert_distracted) ? cv::Scalar(0, 0, 255) : cv::Scalar(0, 220, 0));
-
-    // 3. Глобальные алерты (плашки)
     if (state.alert_drowsy) {
-        cv::rectangle(frame, cv::Rect(0, frame.rows / 2 - 40, frame.cols, 80), 
-                      cv::Scalar(0, 165, 255), -1, cv::LINE_AA);
-        cv::putText(frame, "DROWSINESS ALERT!", cv::Point(frame.cols / 2 - 150, frame.rows / 2 + 10),
-                    cv::FONT_HERSHEY_SIMPLEX, 1.2, cv::Scalar(255, 255, 255), 3, cv::LINE_AA);
+        cv::rectangle(hud_area, cv::Point(0,0), cv::Point(hud_width, hud_height), cv::Scalar(0,0,255),5);
+        cv::putText(hud_area, "DROWSINESS ALERT!", cv::Point(40, hud_height/2), cv::FONT_HERSHEY_SIMPLEX,0.9, cv::Scalar(0,0,255),2);
     }
-
     if (state.alert_distracted) {
-        cv::rectangle(frame, cv::Rect(0, frame.rows - 60, frame.cols, 60), 
-                      cv::Scalar(0, 0, 255), -1, cv::LINE_AA);
-        cv::putText(frame, "DISTRACTION DETECTED", cv::Point(frame.cols / 2 - 160, frame.rows - 20),
-                    cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 2, cv::LINE_AA);
+        cv::rectangle(hud_area, cv::Point(0, hud_height-30), cv::Point(hud_width, hud_height), cv::Scalar(0,0,255), cv::FILLED);
+        cv::putText(hud_area, "DISTRACTION", cv::Point(20, hud_height-10), cv::FONT_HERSHEY_SIMPLEX,0.5, cv::Scalar(255,255,255),1);
     }
 }

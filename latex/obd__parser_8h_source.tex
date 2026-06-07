@@ -1,0 +1,30 @@
+\doxysection{obd\+\_\+parser.\+h}
+\hypertarget{obd__parser_8h_source}{}\label{obd__parser_8h_source}\index{src/obd\_parser.h@{src/obd\_parser.h}}
+\doxymbox{\hyperlink{obd__parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_ae40a3c0c1b8ba7dde58f3694496da595}{speed\_kmh}}\ =\ 0.0f;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_a9834c26de40f94d75b03cfe9bb6bdd8e}{engine\_rpm}}\ =\ 0.0f;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_a2fd69b775979c2f1dd36d63e9cbca39c}{throttle\_pos}}\ =\ 0.0f;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_afdfe8d8c3c70e3e3385bf941eef01e52}{coolant\_temp}}\ =\ 0.0f;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_a8c799e5516189b0d7c63b952156892f9}{fuel\_level}}\ =\ 0.0f;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_o_b_d_record_a9e27588133fb6ef2e0ce9d584b239f1f}{intake\_air\_temp}}\ =\ 0.0f;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_o_b_d_record_a481be210c7a7af7686eafff132095678}{label}}\ =\ -\/1;}
+\DoxyCodeLine{00013\ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_o_b_d_parser}{OBDParser}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_o_b_d_parser_af0f94d3544c358fd44a0c1ecd8a54d34}{load}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ \doxymbox{\hyperlink{class_o_b_d_parser_a108ace9ceb1fe2dde22f3bd70b85bccd}{getRecord}}(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{class_o_b_d_parser_a459fa7a143418931ee89cef32679ffb2}{size}}()\ \textcolor{keyword}{const};\ \ \ \textcolor{comment}{//\ только\ объявление}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ std::vector<OBDRecord>\ \doxymbox{\hyperlink{class_o_b_d_parser_a5deaf2393e50fa1ef511bf761aecdb1b}{records\_}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_o_b_d_parser_a0e34864c9664bc0da868f8a95d8b8cc4}{labelToInt}}(\textcolor{keyword}{const}\ std::string\&\ label)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ \};}
+
+\end{DoxyCode}

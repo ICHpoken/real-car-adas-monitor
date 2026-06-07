@@ -1,0 +1,124 @@
+\doxysection{DMSMonitor Class Reference}
+\hypertarget{class_d_m_s_monitor}{}\label{class_d_m_s_monitor}\index{DMSMonitor@{DMSMonitor}}
+
+
+{\ttfamily \+\#include $<$dms\+\_\+monitor.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_d_m_s_monitor_aa0da2d20fc8cd412a68e3690b1036ee8}{DMSMonitor}} ()
+\item 
+bool \doxymbox{\hyperlink{class_d_m_s_monitor_af79803b3742ef213e3a6c5dc93cd7a44}{initialize}} (const std::\+string \&face\+\_\+prototxt, const std::\+string \&face\+\_\+model, const std::\+string \&eyes\+\_\+cascade\+\_\+path)
+\item 
+\doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} \doxymbox{\hyperlink{class_d_m_s_monitor_aabdc894350d39af869cc59f6fc96ac4d}{analyze}} (cv::\+\+Mat \&frame)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+cv::\+\+Rect \doxymbox{\hyperlink{class_d_m_s_monitor_a14ca158caf892f2704a050d6771d38b8}{detect\+Face}} (const cv::\+\+Mat \&frame)
+\item 
+float \doxymbox{\hyperlink{class_d_m_s_monitor_a7bada2dac56f476ce603eef6df3d4310}{estimate\+Eye\+Openness}} (const cv::\+\+Mat \&frame, const cv::\+\+Rect \&face)
+\item 
+float \doxymbox{\hyperlink{class_d_m_s_monitor_ae971a3fce9cf64649173e90499a0a3d6}{estimate\+Head\+Turn}} (const cv::\+\+Rect \&face, const cv::\+\+Size \&frame\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+cv::\+dnn::\+\+Net \doxymbox{\hyperlink{class_d_m_s_monitor_a4834ffcd5b1c3c4cb4dd82b972a7c285}{net}}
+\item 
+cv::\+\+Cascade\+Classifier \doxymbox{\hyperlink{class_d_m_s_monitor_a15c711f3e310b1022283dc6381df2f66}{eyes\+\_\+cascade}}
+\item 
+std::\+deque$<$ bool $>$ \doxymbox{\hyperlink{class_d_m_s_monitor_ad524dd9ae8f74da3ee5a8bf715a94a6f}{eye\+\_\+history}}
+\item 
+const int \doxymbox{\hyperlink{class_d_m_s_monitor_a1dec551312328ed09ef5e077d6d524b2}{HISTORY\+\_\+\+SIZE}} = 15
+\item 
+const int \doxymbox{\hyperlink{class_d_m_s_monitor_a0ce4b6de357fc3b013e9538c2f6a06de}{CLOSED\+\_\+\+THRESHOLD}} = 10
+\end{DoxyCompactItemize}
+
+
+\label{class_d_m_s_monitor_doc-constructors}
+\Hypertarget{class_d_m_s_monitor_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_d_m_s_monitor_aa0da2d20fc8cd412a68e3690b1036ee8}\index{DMSMonitor@{DMSMonitor}!DMSMonitor@{DMSMonitor}}
+\index{DMSMonitor@{DMSMonitor}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{DMSMonitor()}{DMSMonitor()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_aa0da2d20fc8cd412a68e3690b1036ee8} 
+DMSMonitor::\+\+DMSMonitor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_d_m_s_monitor_doc-func-members}
+\Hypertarget{class_d_m_s_monitor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_m_s_monitor_aabdc894350d39af869cc59f6fc96ac4d}\index{DMSMonitor@{DMSMonitor}!analyze@{analyze}}
+\index{analyze@{analyze}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{analyze()}{analyze()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_aabdc894350d39af869cc59f6fc96ac4d} 
+\doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} DMSMonitor::\+analyze (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{frame}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_d_m_s_monitor_a14ca158caf892f2704a050d6771d38b8}\index{DMSMonitor@{DMSMonitor}!detectFace@{detectFace}}
+\index{detectFace@{detectFace}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{detectFace()}{detectFace()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a14ca158caf892f2704a050d6771d38b8} 
+cv::\+\+Rect DMSMonitor::\+detect\+Face (\begin{DoxyParamCaption}\item[{const cv::\+\+Mat \&}]{frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_a7bada2dac56f476ce603eef6df3d4310}\index{DMSMonitor@{DMSMonitor}!estimateEyeOpenness@{estimateEyeOpenness}}
+\index{estimateEyeOpenness@{estimateEyeOpenness}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{estimateEyeOpenness()}{estimateEyeOpenness()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a7bada2dac56f476ce603eef6df3d4310} 
+float DMSMonitor::\+estimate\+Eye\+Openness (\begin{DoxyParamCaption}\item[{const cv::\+\+Mat \&}]{frame}{, }\item[{const cv::\+\+Rect \&}]{face}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_ae971a3fce9cf64649173e90499a0a3d6}\index{DMSMonitor@{DMSMonitor}!estimateHeadTurn@{estimateHeadTurn}}
+\index{estimateHeadTurn@{estimateHeadTurn}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{estimateHeadTurn()}{estimateHeadTurn()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_ae971a3fce9cf64649173e90499a0a3d6} 
+float DMSMonitor::\+estimate\+Head\+Turn (\begin{DoxyParamCaption}\item[{const cv::\+\+Rect \&}]{face}{, }\item[{const cv::\+\+Size \&}]{frame\+\_\+size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_af79803b3742ef213e3a6c5dc93cd7a44}\index{DMSMonitor@{DMSMonitor}!initialize@{initialize}}
+\index{initialize@{initialize}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_af79803b3742ef213e3a6c5dc93cd7a44} 
+bool DMSMonitor::\+initialize (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{face\+\_\+prototxt}{, }\item[{const std::\+string \&}]{face\+\_\+model}{, }\item[{const std::\+string \&}]{eyes\+\_\+cascade\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_d_m_s_monitor_doc-variable-members}
+\Hypertarget{class_d_m_s_monitor_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_d_m_s_monitor_a0ce4b6de357fc3b013e9538c2f6a06de}\index{DMSMonitor@{DMSMonitor}!CLOSED\_THRESHOLD@{CLOSED\_THRESHOLD}}
+\index{CLOSED\_THRESHOLD@{CLOSED\_THRESHOLD}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{CLOSED\_THRESHOLD}{CLOSED\_THRESHOLD}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a0ce4b6de357fc3b013e9538c2f6a06de} 
+const int DMSMonitor::\+\+CLOSED\+\_\+\+THRESHOLD = 10\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_ad524dd9ae8f74da3ee5a8bf715a94a6f}\index{DMSMonitor@{DMSMonitor}!eye\_history@{eye\_history}}
+\index{eye\_history@{eye\_history}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{eye\_history}{eye\_history}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_ad524dd9ae8f74da3ee5a8bf715a94a6f} 
+std::\+deque$<$bool$>$ DMSMonitor::\+eye\+\_\+history\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_a15c711f3e310b1022283dc6381df2f66}\index{DMSMonitor@{DMSMonitor}!eyes\_cascade@{eyes\_cascade}}
+\index{eyes\_cascade@{eyes\_cascade}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{eyes\_cascade}{eyes\_cascade}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a15c711f3e310b1022283dc6381df2f66} 
+cv::\+\+Cascade\+Classifier DMSMonitor::\+eyes\+\_\+cascade\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_a1dec551312328ed09ef5e077d6d524b2}\index{DMSMonitor@{DMSMonitor}!HISTORY\_SIZE@{HISTORY\_SIZE}}
+\index{HISTORY\_SIZE@{HISTORY\_SIZE}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{HISTORY\_SIZE}{HISTORY\_SIZE}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a1dec551312328ed09ef5e077d6d524b2} 
+const int DMSMonitor::\+\+HISTORY\+\_\+\+SIZE = 15\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_m_s_monitor_a4834ffcd5b1c3c4cb4dd82b972a7c285}\index{DMSMonitor@{DMSMonitor}!net@{net}}
+\index{net@{net}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{net}{net}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_a4834ffcd5b1c3c4cb4dd82b972a7c285} 
+cv::\+dnn::\+\+Net DMSMonitor::\+net\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{dms__monitor_8h}{dms\+\_\+monitor.\+h}}\item 
+src/\+\doxymbox{\hyperlink{dms__monitor_8cpp}{dms\+\_\+monitor.\+cpp}}\end{DoxyCompactItemize}

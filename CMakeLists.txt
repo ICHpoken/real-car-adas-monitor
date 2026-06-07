@@ -1,41 +1,50 @@
 cmake_minimum_required(VERSION 3.20)
-project(RealCarMonitor LANGUAGES CXX)
+project(RealCarMonitor)
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
-
-# Стандарт C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Подсказка CMake, где искать OpenCV
-set(OpenCV_DIR "C:/opencv/build")
-
-# Ищем OpenCV
+set(OpenCV_DIR "C:/opencv/build/x64/vc16/lib")
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
 
-# Ищем ONNX Runtime
 set(ONNXRUNTIME_ROOT "C:/onnxruntime")
-include_directories(${ONNXRUNTIME_ROOT}/include)
-link_directories(${ONNXRUNTIME_ROOT}/lib)
+set(ONNXRUNTIME_INCLUDE ${ONNXRUNTIME_ROOT}/include)
+set(ONNXRUNTIME_LIB ${ONNXRUNTIME_ROOT}/lib/onnxruntime.lib)
+if(NOT EXISTS ${ONNXRUNTIME_LIB})
+    message(FATAL_ERROR "onnxruntime.lib not found at ${ONNXRUNTIME_LIB}")
+endif()
 
-# Собираем все .cpp файлы из папки src/
-file(GLOB SOURCES "src/*.cpp")
+set(SOURCES
+    src/main.cpp
+    src/obd_parser.cpp
+    src/onnx_classifier.cpp
+    src/dashboard.cpp
+    src/dms_monitor.cpp
+    src/dms_hud.cpp
+)
 
-# Главный исполняемый файл
 add_executable(RealCarMonitor ${SOURCES})
-target_link_libraries(RealCarMonitor ${OpenCV_LIBS} onnxruntime)
+target_include_directories(RealCarMonitor PRIVATE
+    ${OpenCV_INCLUDE_DIRS}
+    ${ONNXRUNTIME_INCLUDE}
+    src
+)
+target_link_libraries(RealCarMonitor PRIVATE
+    ${OpenCV_LIBS}
+    ${ONNXRUNTIME_LIB}
+)
 
 # Google Test
 include(FetchContent)
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.12.1
+FetchContent_Declare(googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Тесты
-add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
-target_link_libraries(RunTests gtest gtest_main ${OpenCV_LIBS})
 enable_testing()
+add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
+target_include_directories(RunTests PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(RunTests PRIVATE GTest::gtest GTest::gtest_main ${OpenCV_LIBS})
+include(GoogleTest)
+gtest_discover_tests(RunTests)

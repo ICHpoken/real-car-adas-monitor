@@ -1,0 +1,115 @@
+\doxysection{Shared\+State Struct Reference}
+\hypertarget{struct_shared_state}{}\label{struct_shared_state}\index{SharedState@{SharedState}}
+
+
+{\ttfamily \+\#include $<$shared\+\_\+state.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{struct_shared_state_a391be3ceed683ce425499bce346a7a09}{update}} (size\+\_\+t idx, const \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} \&rec, const \doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} \&cls)
+\item 
+std::\+pair$<$ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}, \doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} $>$ \doxymbox{\hyperlink{struct_shared_state_a6bc1d7e694f42b1f875f8c6e04d96603}{get}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} \doxymbox{\hyperlink{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d}{current\+\_\+record}}
+\item 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} \doxymbox{\hyperlink{struct_shared_state_ad40ed35320e949378cef71951069461c}{current\+\_\+classification}}
+\item 
+int \doxymbox{\hyperlink{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02}{alert\+\_\+drowsy\+\_\+count}} = 0
+\item 
+int \doxymbox{\hyperlink{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3}{alert\+\_\+distracted\+\_\+count}} = 0
+\item 
+int \doxymbox{\hyperlink{struct_shared_state_a49d4319596595650c43095c57d0d86a2}{alert\+\_\+aggressive\+\_\+count}} = 0
+\item 
+std::\+atomic$<$ bool $>$ \doxymbox{\hyperlink{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0}{running}} \{true\}
+\item 
+std::\+mutex \doxymbox{\hyperlink{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}{mtx}}
+\item 
+size\+\_\+t \doxymbox{\hyperlink{struct_shared_state_a738b55e3f4dc2e91a9d96e9e360c1e51}{current\+\_\+index}} = 0
+\item 
+size\+\_\+t \doxymbox{\hyperlink{struct_shared_state_aca68f217d77f84ffbd22847ee2c8cb0a}{total\+\_\+records}} = 0
+\end{DoxyCompactItemize}
+
+
+\label{struct_shared_state_doc-func-members}
+\Hypertarget{struct_shared_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_shared_state_a6bc1d7e694f42b1f875f8c6e04d96603}\index{SharedState@{SharedState}!get@{get}}
+\index{get@{get}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{struct_shared_state_a6bc1d7e694f42b1f875f8c6e04d96603} 
+std::\+pair$<$ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}, \doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} $>$ Shared\+State::\+get (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_shared_state_a391be3ceed683ce425499bce346a7a09}\index{SharedState@{SharedState}!update@{update}}
+\index{update@{update}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{struct_shared_state_a391be3ceed683ce425499bce346a7a09} 
+void Shared\+State::\+update (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{idx}{, }\item[{const \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} \&}]{rec}{, }\item[{const \doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} \&}]{cls}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{struct_shared_state_doc-variable-members}
+\Hypertarget{struct_shared_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_shared_state_a49d4319596595650c43095c57d0d86a2}\index{SharedState@{SharedState}!alert\_aggressive\_count@{alert\_aggressive\_count}}
+\index{alert\_aggressive\_count@{alert\_aggressive\_count}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{alert\_aggressive\_count}{alert\_aggressive\_count}}
+{\footnotesize\ttfamily \label{struct_shared_state_a49d4319596595650c43095c57d0d86a2} 
+int Shared\+State::\+alert\+\_\+aggressive\+\_\+count = 0}
+
+\Hypertarget{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3}\index{SharedState@{SharedState}!alert\_distracted\_count@{alert\_distracted\_count}}
+\index{alert\_distracted\_count@{alert\_distracted\_count}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{alert\_distracted\_count}{alert\_distracted\_count}}
+{\footnotesize\ttfamily \label{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3} 
+int Shared\+State::\+alert\+\_\+distracted\+\_\+count = 0}
+
+\Hypertarget{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02}\index{SharedState@{SharedState}!alert\_drowsy\_count@{alert\_drowsy\_count}}
+\index{alert\_drowsy\_count@{alert\_drowsy\_count}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{alert\_drowsy\_count}{alert\_drowsy\_count}}
+{\footnotesize\ttfamily \label{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02} 
+int Shared\+State::\+alert\+\_\+drowsy\+\_\+count = 0}
+
+\Hypertarget{struct_shared_state_ad40ed35320e949378cef71951069461c}\index{SharedState@{SharedState}!current\_classification@{current\_classification}}
+\index{current\_classification@{current\_classification}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{current\_classification}{current\_classification}}
+{\footnotesize\ttfamily \label{struct_shared_state_ad40ed35320e949378cef71951069461c} 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} Shared\+State::\+current\+\_\+classification}
+
+\Hypertarget{struct_shared_state_a738b55e3f4dc2e91a9d96e9e360c1e51}\index{SharedState@{SharedState}!current\_index@{current\_index}}
+\index{current\_index@{current\_index}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{current\_index}{current\_index}}
+{\footnotesize\ttfamily \label{struct_shared_state_a738b55e3f4dc2e91a9d96e9e360c1e51} 
+size\+\_\+t Shared\+State::\+current\+\_\+index = 0}
+
+\Hypertarget{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d}\index{SharedState@{SharedState}!current\_record@{current\_record}}
+\index{current\_record@{current\_record}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{current\_record}{current\_record}}
+{\footnotesize\ttfamily \label{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d} 
+\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} Shared\+State::\+current\+\_\+record}
+
+\Hypertarget{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}\index{SharedState@{SharedState}!mtx@{mtx}}
+\index{mtx@{mtx}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{mtx}{mtx}}
+{\footnotesize\ttfamily \label{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c} 
+std::\+mutex Shared\+State::\+mtx}
+
+\Hypertarget{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0}\index{SharedState@{SharedState}!running@{running}}
+\index{running@{running}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily \label{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0} 
+std::\+atomic$<$bool$>$ Shared\+State::\+running \{true\}}
+
+\Hypertarget{struct_shared_state_aca68f217d77f84ffbd22847ee2c8cb0a}\index{SharedState@{SharedState}!total\_records@{total\_records}}
+\index{total\_records@{total\_records}!SharedState@{SharedState}}
+\doxysubsubsection{\texorpdfstring{total\_records}{total\_records}}
+{\footnotesize\ttfamily \label{struct_shared_state_aca68f217d77f84ffbd22847ee2c8cb0a} 
+size\+\_\+t Shared\+State::\+total\+\_\+records = 0}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{shared__state_8h}{shared\+\_\+state.\+h}}\end{DoxyCompactItemize}

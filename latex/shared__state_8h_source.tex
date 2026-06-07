@@ -1,0 +1,38 @@
+\doxysection{shared\+\_\+state.\+h}
+\hypertarget{shared__state_8h_source}{}\label{shared__state_8h_source}\index{src/shared\_state.h@{src/shared\_state.h}}
+\doxymbox{\hyperlink{shared__state_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{obd__parser_8h}{obd\_parser.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{onnx__classifier_8h}{onnx\_classifier.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_shared_state}{SharedState}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ \doxymbox{\hyperlink{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d}{current\_record}};}
+\DoxyCodeLine{00011\ \ \ \ \ \doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ \doxymbox{\hyperlink{struct_shared_state_ad40ed35320e949378cef71951069461c}{current\_classification}};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02}{alert\_drowsy\_count}}\ =\ 0;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3}{alert\_distracted\_count}}\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_shared_state_a49d4319596595650c43095c57d0d86a2}{alert\_aggressive\_count}}\ =\ 0;}
+\DoxyCodeLine{00015\ \ \ \ \ std::atomic<bool>\ \doxymbox{\hyperlink{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0}{running}}\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00016\ \ \ \ \ std::mutex\ \doxymbox{\hyperlink{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}{mtx}};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{struct_shared_state_a738b55e3f4dc2e91a9d96e9e360c1e51}{current\_index}}\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{struct_shared_state_aca68f217d77f84ffbd22847ee2c8cb0a}{total\_records}}\ =\ 0;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{struct_shared_state_a391be3ceed683ce425499bce346a7a09}{update}}(\textcolor{keywordtype}{size\_t}\ idx,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\&\ rec,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\&\ cls)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\doxymbox{\hyperlink{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}{mtx}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_shared_state_a738b55e3f4dc2e91a9d96e9e360c1e51}{current\_index}}\ =\ idx;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d}{current\_record}}\ =\ rec;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_shared_state_ad40ed35320e949378cef71951069461c}{current\_classification}}\ =\ cls;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cls.\doxymbox{\hyperlink{struct_classification_result_aba26cd2c4467902c5131ff762faf3923}{label}}\ ==\ 2)\ \doxymbox{\hyperlink{struct_shared_state_a49d4319596595650c43095c57d0d86a2}{alert\_aggressive\_count}}++;}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::pair<OBDRecord,\ ClassificationResult>\ \doxymbox{\hyperlink{struct_shared_state_a6bc1d7e694f42b1f875f8c6e04d96603}{get}}()\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\doxymbox{\hyperlink{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}{mtx}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\doxymbox{\hyperlink{struct_shared_state_af156adf052094f5af4dbaf9dfeb34e5d}{current\_record}},\ \doxymbox{\hyperlink{struct_shared_state_ad40ed35320e949378cef71951069461c}{current\_classification}}\};}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

@@ -1,10 +1,12 @@
-#pragma once
+#ifndef DMS_HUD_H
+#define DMS_HUD_H
+
 #include <opencv2/opencv.hpp>
 #include "dms_monitor.h"
 
-// Класс для отрисовки HUD (Head-Up Display) состояния водителя
 class DMSHUD {
 public:
-    // Рисует состояние водителя поверх кадра с камеры
-    void draw(cv::Mat& frame, const DriverState& state);
+    void draw(cv::Mat& full_frame, const DriverState& state, const cv::Mat& camera_frame);
 };
+
+#endif

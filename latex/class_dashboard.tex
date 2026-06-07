@@ -1,0 +1,108 @@
+\doxysection{Dashboard Class Reference}
+\hypertarget{class_dashboard}{}\label{class_dashboard}\index{Dashboard@{Dashboard}}
+
+
+{\ttfamily \+\#include $<$dashboard.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_dashboard_aa0173a97f26dceca0f3f4fdea93f018a}{Dashboard}} (int width=640, int height=480)
+\item 
+void \doxymbox{\hyperlink{class_dashboard_a8c99ad090abea99fbe1b4dcbb5ecc135}{draw}} (cv::\+\+Mat \&image, const \doxymbox{\hyperlink{struct_dashboard_data}{Dashboard\+Data}} \&data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_dashboard_a8212e761ccf844d1f65c82d3034ed46f}{draw\+Gauge}} (cv::\+\+Mat \&img, const cv::\+\+Point \&center, int radius, float value, float min\+Val, float max\+Val, const std::\+string \&title, const std::\+string \&unit, const cv::\+\+Scalar \&good\+Color, const cv::\+\+Scalar \&warn\+Color, float warn\+Threshold)
+\item 
+void \doxymbox{\hyperlink{class_dashboard_a59b21952517e6774f3bead880aa1d85d}{draw\+Linear\+Gauge}} (cv::\+\+Mat \&img, const cv::\+\+Rect \&rect, float value, float min\+Val, float max\+Val, const std::\+string \&title, const std::\+string \&unit, const cv::\+\+Scalar \&good\+Color, const cv::\+\+Scalar \&warn\+Color, float warn\+Threshold)
+\item 
+void \doxymbox{\hyperlink{class_dashboard_a3a58253bf5bb4bc18174815c5874b08a}{draw\+Warning}} (cv::\+\+Mat \&img, const std::\+string \&text, const cv::\+\+Scalar \&color, const cv::\+\+Point \&position)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_dashboard_a7640dc57e3f1c0c7a157f765f4a49a9e}{panel\+\_\+width\+\_\+}}
+\item 
+int \doxymbox{\hyperlink{class_dashboard_acafc33964445dda2eb6369dfe5917a0d}{panel\+\_\+height\+\_\+}}
+\item 
+cv::\+\+Point \doxymbox{\hyperlink{class_dashboard_a3a5395879519dddd60e8772f7c716f46}{center\+\_\+}}
+\item 
+int \doxymbox{\hyperlink{class_dashboard_a69a269c1382adcbe0b285b07e6884e94}{gauge\+\_\+radius\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\label{class_dashboard_doc-constructors}
+\Hypertarget{class_dashboard_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_dashboard_aa0173a97f26dceca0f3f4fdea93f018a}\index{Dashboard@{Dashboard}!Dashboard@{Dashboard}}
+\index{Dashboard@{Dashboard}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{Dashboard()}{Dashboard()}}
+{\footnotesize\ttfamily \label{class_dashboard_aa0173a97f26dceca0f3f4fdea93f018a} 
+Dashboard::\+\+Dashboard (\begin{DoxyParamCaption}\item[{int}]{width}{ = {\ttfamily 640}, }\item[{int}]{height}{ = {\ttfamily 480}}\end{DoxyParamCaption})}
+
+
+
+\label{class_dashboard_doc-func-members}
+\Hypertarget{class_dashboard_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dashboard_a8c99ad090abea99fbe1b4dcbb5ecc135}\index{Dashboard@{Dashboard}!draw@{draw}}
+\index{draw@{draw}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_dashboard_a8c99ad090abea99fbe1b4dcbb5ecc135} 
+void Dashboard::\+draw (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{image}{, }\item[{const \doxymbox{\hyperlink{struct_dashboard_data}{Dashboard\+Data}} \&}]{data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dashboard_a8212e761ccf844d1f65c82d3034ed46f}\index{Dashboard@{Dashboard}!drawGauge@{drawGauge}}
+\index{drawGauge@{drawGauge}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{drawGauge()}{drawGauge()}}
+{\footnotesize\ttfamily \label{class_dashboard_a8212e761ccf844d1f65c82d3034ed46f} 
+void Dashboard::\+draw\+Gauge (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{img}{, }\item[{const cv::\+\+Point \&}]{center}{, }\item[{int}]{radius}{, }\item[{float}]{value}{, }\item[{float}]{min\+Val}{, }\item[{float}]{max\+Val}{, }\item[{const std::\+string \&}]{title}{, }\item[{const std::\+string \&}]{unit}{, }\item[{const cv::\+\+Scalar \&}]{good\+Color}{, }\item[{const cv::\+\+Scalar \&}]{warn\+Color}{, }\item[{float}]{warn\+Threshold}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_dashboard_a59b21952517e6774f3bead880aa1d85d}\index{Dashboard@{Dashboard}!drawLinearGauge@{drawLinearGauge}}
+\index{drawLinearGauge@{drawLinearGauge}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{drawLinearGauge()}{drawLinearGauge()}}
+{\footnotesize\ttfamily \label{class_dashboard_a59b21952517e6774f3bead880aa1d85d} 
+void Dashboard::\+draw\+Linear\+Gauge (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{img}{, }\item[{const cv::\+\+Rect \&}]{rect}{, }\item[{float}]{value}{, }\item[{float}]{min\+Val}{, }\item[{float}]{max\+Val}{, }\item[{const std::\+string \&}]{title}{, }\item[{const std::\+string \&}]{unit}{, }\item[{const cv::\+\+Scalar \&}]{good\+Color}{, }\item[{const cv::\+\+Scalar \&}]{warn\+Color}{, }\item[{float}]{warn\+Threshold}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_dashboard_a3a58253bf5bb4bc18174815c5874b08a}\index{Dashboard@{Dashboard}!drawWarning@{drawWarning}}
+\index{drawWarning@{drawWarning}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{drawWarning()}{drawWarning()}}
+{\footnotesize\ttfamily \label{class_dashboard_a3a58253bf5bb4bc18174815c5874b08a} 
+void Dashboard::\+draw\+Warning (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{img}{, }\item[{const std::\+string \&}]{text}{, }\item[{const cv::\+\+Scalar \&}]{color}{, }\item[{const cv::\+\+Point \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{class_dashboard_doc-variable-members}
+\Hypertarget{class_dashboard_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_dashboard_a3a5395879519dddd60e8772f7c716f46}\index{Dashboard@{Dashboard}!center\_@{center\_}}
+\index{center\_@{center\_}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{center\_}{center\_}}
+{\footnotesize\ttfamily \label{class_dashboard_a3a5395879519dddd60e8772f7c716f46} 
+cv::\+\+Point Dashboard::\+center\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_dashboard_a69a269c1382adcbe0b285b07e6884e94}\index{Dashboard@{Dashboard}!gauge\_radius\_@{gauge\_radius\_}}
+\index{gauge\_radius\_@{gauge\_radius\_}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{gauge\_radius\_}{gauge\_radius\_}}
+{\footnotesize\ttfamily \label{class_dashboard_a69a269c1382adcbe0b285b07e6884e94} 
+int Dashboard::\+gauge\+\_\+radius\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_dashboard_acafc33964445dda2eb6369dfe5917a0d}\index{Dashboard@{Dashboard}!panel\_height\_@{panel\_height\_}}
+\index{panel\_height\_@{panel\_height\_}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{panel\_height\_}{panel\_height\_}}
+{\footnotesize\ttfamily \label{class_dashboard_acafc33964445dda2eb6369dfe5917a0d} 
+int Dashboard::\+panel\+\_\+height\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_dashboard_a7640dc57e3f1c0c7a157f765f4a49a9e}\index{Dashboard@{Dashboard}!panel\_width\_@{panel\_width\_}}
+\index{panel\_width\_@{panel\_width\_}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{panel\_width\_}{panel\_width\_}}
+{\footnotesize\ttfamily \label{class_dashboard_a7640dc57e3f1c0c7a157f765f4a49a9e} 
+int Dashboard::\+panel\+\_\+width\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{dashboard_8h}{dashboard.\+h}}\item 
+src/\+\doxymbox{\hyperlink{dashboard_8cpp}{dashboard.\+cpp}}\end{DoxyCompactItemize}

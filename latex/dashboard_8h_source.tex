@@ -1,0 +1,48 @@
+\doxysection{dashboard.\+h}
+\hypertarget{dashboard_8h_source}{}\label{dashboard_8h_source}\index{src/dashboard.h@{src/dashboard.h}}
+\doxymbox{\hyperlink{dashboard_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <opencv2/opencv.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Структура\ для\ передачи\ данных\ на\ панель}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_dashboard_data}{DashboardData}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_dashboard_data_a3ad9657c8cfbda3d6f665ef0893efe8b}{speed\_kmh}}\ =\ 0.0f;\ \ \ \ \ \ \ \textcolor{comment}{//\ 0-\/140\ км/ч}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_dashboard_data_aa1cdb516a510699d89a57025d0912457}{rpm}}\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0-\/6000\ RPM}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_dashboard_data_a2a24997aafb85e4d3ecec5143b84ae70}{coolant\_temp}}\ =\ 90.0f;\ \ \ \textcolor{comment}{//\ 0-\/120\ °C}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_dashboard_data_aa7f82a1ca44bb8c46798bcd333854310}{fuel\_level}}\ =\ 50.0f;\ \ \ \ \ \textcolor{comment}{//\ 0-\/100\ \%}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_dashboard_data_a473a4ed9d02d7f723b30d78b91b90322}{throttle\_pos}}\ =\ 30.0f;\ \ \ \textcolor{comment}{//\ 0-\/100\ \%}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_dashboard_data_a21297520a9acac3c6fab74f46285a48f}{driving\_style}}\ =\ 1;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0=SLOW,\ 1=NORMAL,\ 2=AGGRESSIVE}}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_dashboard_aa0173a97f26dceca0f3f4fdea93f018a}{Dashboard}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{class_dashboard_aa0173a97f26dceca0f3f4fdea93f018a}{Dashboard}}(\textcolor{keywordtype}{int}\ width\ =\ 640,\ \textcolor{keywordtype}{int}\ height\ =\ 480);}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Главный\ метод:\ рисует\ панель\ на\ переданном\ изображении}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_dashboard_a8c99ad090abea99fbe1b4dcbb5ecc135}{draw}}(cv::Mat\&\ image,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_dashboard_data}{DashboardData}}\&\ data);}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_dashboard_a7640dc57e3f1c0c7a157f765f4a49a9e}{panel\_width\_}},\ \doxymbox{\hyperlink{class_dashboard_acafc33964445dda2eb6369dfe5917a0d}{panel\_height\_}};}
+\DoxyCodeLine{00025\ \ \ \ \ cv::Point\ \doxymbox{\hyperlink{class_dashboard_a3a5395879519dddd60e8772f7c716f46}{center\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ центр\ для\ круговых\ приборов}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_dashboard_a69a269c1382adcbe0b285b07e6884e94}{gauge\_radius\_}};}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Вспомогательные\ методы}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_dashboard_a8212e761ccf844d1f65c82d3034ed46f}{drawGauge}}(cv::Mat\&\ img,\ \textcolor{keyword}{const}\ cv::Point\&\ center,\ \textcolor{keywordtype}{int}\ radius,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ minVal,\ \textcolor{keywordtype}{float}\ maxVal,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ title,\ \textcolor{keyword}{const}\ std::string\&\ unit,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ cv::Scalar\&\ goodColor,\ \textcolor{keyword}{const}\ cv::Scalar\&\ warnColor,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ warnThreshold);}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_dashboard_a59b21952517e6774f3bead880aa1d85d}{drawLinearGauge}}(cv::Mat\&\ img,\ \textcolor{keyword}{const}\ cv::Rect\&\ rect,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ minVal,\ \textcolor{keywordtype}{float}\ maxVal,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ title,\ \textcolor{keyword}{const}\ std::string\&\ unit,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ cv::Scalar\&\ goodColor,\ \textcolor{keyword}{const}\ cv::Scalar\&\ warnColor,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ warnThreshold);}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_dashboard_a3a58253bf5bb4bc18174815c5874b08a}{drawWarning}}(cv::Mat\&\ img,\ \textcolor{keyword}{const}\ std::string\&\ text,\ \textcolor{keyword}{const}\ cv::Scalar\&\ color,\ \textcolor{keyword}{const}\ cv::Point\&\ position);}
+\DoxyCodeLine{00042\ \};}
+
+\end{DoxyCode}

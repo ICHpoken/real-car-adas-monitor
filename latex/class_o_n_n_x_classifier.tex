@@ -1,0 +1,124 @@
+\doxysection{ONNXClassifier Class Reference}
+\hypertarget{class_o_n_n_x_classifier}{}\label{class_o_n_n_x_classifier}\index{ONNXClassifier@{ONNXClassifier}}
+
+
+{\ttfamily \+\#include $<$onnx\+\_\+classifier.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_o_n_n_x_classifier_a4a75be0f5b6f6e5cbf815112ad71ebdc}{ONNXClassifier}} (const std::\+string \&model\+Path, const std::\+string \&params\+Path)
+\item 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} \doxymbox{\hyperlink{class_o_n_n_x_classifier_a9f0cf15b05a84b9d57e843ac217fbb53}{predict}} (const std::\+vector$<$ float $>$ \&features)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::\+vector$<$ float $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a30519275d79b8f0966ba497d50a59f05}{normalize}} (const std::\+vector$<$ float $>$ \&x) const
+\item 
+std::\+vector$<$ float $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a84cf7fc2ea58a8e5589b50ee1a1f8008}{softmax}} (const std::\+vector$<$ float $>$ \&logits) const
+\item 
+std::\+vector$<$ float $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a67cd6feaea885b672efa45bc9bfdb90d}{parse\+Json\+Array}} (const std::\+string \&json, const std::\+string \&key) const
+\item 
+std::\+vector$<$ std::\+string $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a95c576d3e3955bbb2dc4a6e3f5e0dec0}{parse\+Json\+String\+Array}} (const std::\+string \&json, const std::\+string \&key) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ort::\+\+Env \doxymbox{\hyperlink{class_o_n_n_x_classifier_ad1eaf00fb496610d1b46811092d849de}{env}} \{ORT\+\_\+\+LOGGING\+\_\+\+LEVEL\+\_\+\+WARNING, "{}ADAS\+\_\+\+Classifier"{}\}
+\item 
+Ort::\+\+Session \doxymbox{\hyperlink{class_o_n_n_x_classifier_acf15a19c47a5ff647885b7e15e15b501}{session}} \{nullptr\}
+\item 
+std::\+vector$<$ float $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_aec4324cd2b7998ddc0c648be59386043}{mean\+\_\+}}
+\item 
+std::\+vector$<$ float $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_adfd5beb566b2daf68143bd0ba37f9198}{std\+\_\+}}
+\item 
+std::\+vector$<$ std::\+string $>$ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a42accd65d3d2c80b74af9ad3213c0d41}{classes\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\label{class_o_n_n_x_classifier_doc-constructors}
+\Hypertarget{class_o_n_n_x_classifier_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_o_n_n_x_classifier_a4a75be0f5b6f6e5cbf815112ad71ebdc}\index{ONNXClassifier@{ONNXClassifier}!ONNXClassifier@{ONNXClassifier}}
+\index{ONNXClassifier@{ONNXClassifier}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{ONNXClassifier()}{ONNXClassifier()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a4a75be0f5b6f6e5cbf815112ad71ebdc} 
+ONNXClassifier::\+\+ONNXClassifier (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{model\+Path}{, }\item[{const std::\+string \&}]{params\+Path}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_o_n_n_x_classifier_doc-func-members}
+\Hypertarget{class_o_n_n_x_classifier_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_o_n_n_x_classifier_a30519275d79b8f0966ba497d50a59f05}\index{ONNXClassifier@{ONNXClassifier}!normalize@{normalize}}
+\index{normalize@{normalize}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a30519275d79b8f0966ba497d50a59f05} 
+std::\+vector$<$ float $>$ ONNXClassifier::\+normalize (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ float $>$ \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_a67cd6feaea885b672efa45bc9bfdb90d}\index{ONNXClassifier@{ONNXClassifier}!parseJsonArray@{parseJsonArray}}
+\index{parseJsonArray@{parseJsonArray}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{parseJsonArray()}{parseJsonArray()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a67cd6feaea885b672efa45bc9bfdb90d} 
+std::\+vector$<$ float $>$ ONNXClassifier::\+parse\+Json\+Array (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{json}{, }\item[{const std::\+string \&}]{key}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_a95c576d3e3955bbb2dc4a6e3f5e0dec0}\index{ONNXClassifier@{ONNXClassifier}!parseJsonStringArray@{parseJsonStringArray}}
+\index{parseJsonStringArray@{parseJsonStringArray}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{parseJsonStringArray()}{parseJsonStringArray()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a95c576d3e3955bbb2dc4a6e3f5e0dec0} 
+std::\+vector$<$ std::\+string $>$ ONNXClassifier::\+parse\+Json\+String\+Array (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{json}{, }\item[{const std::\+string \&}]{key}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_a9f0cf15b05a84b9d57e843ac217fbb53}\index{ONNXClassifier@{ONNXClassifier}!predict@{predict}}
+\index{predict@{predict}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a9f0cf15b05a84b9d57e843ac217fbb53} 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} ONNXClassifier::\+predict (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ float $>$ \&}]{features}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_o_n_n_x_classifier_a84cf7fc2ea58a8e5589b50ee1a1f8008}\index{ONNXClassifier@{ONNXClassifier}!softmax@{softmax}}
+\index{softmax@{softmax}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{softmax()}{softmax()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a84cf7fc2ea58a8e5589b50ee1a1f8008} 
+std::\+vector$<$ float $>$ ONNXClassifier::\+softmax (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ float $>$ \&}]{logits}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\label{class_o_n_n_x_classifier_doc-variable-members}
+\Hypertarget{class_o_n_n_x_classifier_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_o_n_n_x_classifier_a42accd65d3d2c80b74af9ad3213c0d41}\index{ONNXClassifier@{ONNXClassifier}!classes\_@{classes\_}}
+\index{classes\_@{classes\_}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{classes\_}{classes\_}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a42accd65d3d2c80b74af9ad3213c0d41} 
+std::\+vector$<$std::\+string$>$ ONNXClassifier::\+classes\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_ad1eaf00fb496610d1b46811092d849de}\index{ONNXClassifier@{ONNXClassifier}!env@{env}}
+\index{env@{env}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{env}{env}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_ad1eaf00fb496610d1b46811092d849de} 
+Ort::\+\+Env ONNXClassifier::\+env \{ORT\+\_\+\+LOGGING\+\_\+\+LEVEL\+\_\+\+WARNING, "{}ADAS\+\_\+\+Classifier"{}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_aec4324cd2b7998ddc0c648be59386043}\index{ONNXClassifier@{ONNXClassifier}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_aec4324cd2b7998ddc0c648be59386043} 
+std::\+vector$<$float$>$ ONNXClassifier::\+mean\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_acf15a19c47a5ff647885b7e15e15b501}\index{ONNXClassifier@{ONNXClassifier}!session@{session}}
+\index{session@{session}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{session}{session}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_acf15a19c47a5ff647885b7e15e15b501} 
+Ort::\+\+Session ONNXClassifier::\+session \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_o_n_n_x_classifier_adfd5beb566b2daf68143bd0ba37f9198}\index{ONNXClassifier@{ONNXClassifier}!std\_@{std\_}}
+\index{std\_@{std\_}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{std\_}{std\_}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_adfd5beb566b2daf68143bd0ba37f9198} 
+std::\+vector$<$float$>$ ONNXClassifier::\+std\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{onnx__classifier_8h}{onnx\+\_\+classifier.\+h}}\item 
+src/\+\doxymbox{\hyperlink{onnx__classifier_8cpp}{onnx\+\_\+classifier.\+cpp}}\end{DoxyCompactItemize}
